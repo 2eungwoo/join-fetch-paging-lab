@@ -21,4 +21,10 @@ public class ReplyEntity {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private PostEntity post;
+
+    @Builder
+    public ReplyEntity(String content, PostEntity postEntity) {
+        this.content = content;
+        this.post = postEntity;
+    }
 }
