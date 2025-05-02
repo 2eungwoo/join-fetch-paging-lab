@@ -1,12 +1,14 @@
 package lab.jpa_join_fetch_paging.post.domain;
 
 import jakarta.persistence.*;
+import lab.jpa_join_fetch_paging.reply.domain.ReplyEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,23 +25,22 @@ public class PostEntity {
     @Column(name = "content", nullable = false)
     private String content;
 
-//    @OneToMany(mappedBy = "post")
-//    private List<Reply> replies;
-
+    @OneToMany(mappedBy = "post")
+    private List<ReplyEntity> replies;
 
     @Builder
     public PostEntity(String title, String content) {
         this.title = title;
         this.content = content;
-        // this.replies = null;
+        this.replies = null;
     }
 
-//    public void addReply(Reply reply) {
-//        if (replies == null) {
-//            replies = new ArrayList<>();
-//        }
-//        replies.add(reply);
-//    }
+    public void addReply(ReplyEntity replyEntity) {
+        if (replies == null) {
+            replies = new ArrayList<>();
+        }
+        replies.add(replyEntity);
+    }
 }
 
 

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class PostDto {
 
@@ -14,7 +14,6 @@ public class PostDto {
     public static class Request{
         private String title;
         private String content;
-        // private Reply list
 
         public PostEntity toEntity(){
             return PostEntity.builder()
@@ -30,12 +29,16 @@ public class PostDto {
         private Long id;
         private String title;
         private String content;
-        // priavet Reply list
+        // private List<ReplyDto.Response> replies;
 
         public Response(PostEntity postEntity){
             this.id = postEntity.getId();
             this.title = postEntity.getTitle();
             this.content = postEntity.getContent();
+//            this.replies = postEntity.getReplies() == null ? null :
+//                    postEntity.getReplies().stream()
+//                            .map(ReplyDto.Response::new)
+//                            .collect(Collectors.toList());
         }
     }
 }
