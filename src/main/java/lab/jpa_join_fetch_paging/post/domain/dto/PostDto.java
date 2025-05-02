@@ -14,6 +14,7 @@ public class PostDto {
     public static class Request{
         private String title;
         private String content;
+        // private Reply list
 
         public PostEntity toEntity(){
             return PostEntity.builder()
@@ -29,6 +30,7 @@ public class PostDto {
         private Long id;
         private String title;
         private String content;
+        // priavet Reply list
 
         public Response(PostEntity postEntity){
             this.id = postEntity.getId();
