@@ -1,7 +1,7 @@
 package lab.jpa_join_fetch_paging.reply.domain.dto;
 
 import lab.jpa_join_fetch_paging.reply.domain.entity.ReplyEntity;
-import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Getter;
 
