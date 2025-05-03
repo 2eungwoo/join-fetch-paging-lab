@@ -1,6 +1,6 @@
 package lab.jpa_join_fetch_paging.post.service;
 
-import lab.jpa_join_fetch_paging.post.domain.PostEntity;
+import lab.jpa_join_fetch_paging.post.domain.entity.PostEntity;
 import lab.jpa_join_fetch_paging.post.domain.dto.PostDto;
 import lab.jpa_join_fetch_paging.post.domain.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostDto.Response> getPostsAll(){
+    public List<PostDto.Response> getAllPosts(){
 
         List<PostEntity> postEntities = postRepository.findAll();
 

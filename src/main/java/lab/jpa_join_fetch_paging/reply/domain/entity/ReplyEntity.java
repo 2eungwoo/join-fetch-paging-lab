@@ -1,7 +1,7 @@
-package lab.jpa_join_fetch_paging.reply.domain;
+package lab.jpa_join_fetch_paging.reply.domain.entity;
 
 import jakarta.persistence.*;
-import lab.jpa_join_fetch_paging.post.domain.PostEntity;
+import lab.jpa_join_fetch_paging.post.domain.entity.PostEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package lab.jpa_join_fetch_paging.post.domain;
+package lab.jpa_join_fetch_paging.post.domain.entity;
 
 import jakarta.persistence.*;
-import lab.jpa_join_fetch_paging.reply.domain.ReplyEntity;
+import lab.jpa_join_fetch_paging.reply.domain.entity.ReplyEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.util.List;
 public class PostEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title", nullable = false)
