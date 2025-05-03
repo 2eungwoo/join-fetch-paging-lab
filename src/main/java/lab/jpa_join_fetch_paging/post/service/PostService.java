@@ -1,5 +1,6 @@
 package lab.jpa_join_fetch_paging.post.service;
 
+import lab.jpa_join_fetch_paging.common.util.finder.EntityFinder;
 import lab.jpa_join_fetch_paging.post.domain.entity.PostEntity;
 import lab.jpa_join_fetch_paging.post.domain.dto.PostDto;
 import lab.jpa_join_fetch_paging.post.domain.repository.PostRepository;
@@ -15,10 +16,11 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final EntityFinder<PostEntity, Long> postFinder;
 
     @Transactional(readOnly = true)
     public PostDto.Response getPostById(Long postId){
-        PostEntity postEntity = findPostWithPostId(postId);
+        PostEntity postEntity = postFinder.findByIdOrThrow(postId);
         return new PostDto.Response(postEntity);
     }
 
@@ -41,10 +43,5 @@ public class PostService {
 
         postRepository.save(postEntity);
         return new PostDto.Response(postEntity);
-    }
-
-    private PostEntity findPostWithPostId(Long postId) {
-        return postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("404 post not found"));
     }
 }

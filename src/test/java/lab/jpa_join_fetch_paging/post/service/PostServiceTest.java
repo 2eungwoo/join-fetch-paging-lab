@@ -1,5 +1,6 @@
 package lab.jpa_join_fetch_paging.post.service;
 
+import lab.jpa_join_fetch_paging.common.util.finder.EntityFinder;
 import lab.jpa_join_fetch_paging.post.domain.dto.PostDto;
 import lab.jpa_join_fetch_paging.post.domain.entity.PostEntity;
 import lab.jpa_join_fetch_paging.post.domain.repository.PostRepository;
@@ -21,6 +22,9 @@ public class PostServiceTest {
 
     @Mock
     private PostRepository postRepository;
+
+    @Mock
+    private EntityFinder<PostEntity, Long> postFinder;
 
     @InjectMocks
     private PostService postService;
@@ -67,7 +71,7 @@ public class PostServiceTest {
     void getPostById() {
         // given
         Long postId = 1L;
-        when(postRepository.findById(postId)).thenReturn(java.util.Optional.of(postEntity));
+        when(postFinder.findByIdOrThrow(postId)).thenReturn(postEntity);
 
         // when
         PostDto.Response postResponseDto = postService.getPostById(postId);
@@ -77,7 +81,7 @@ public class PostServiceTest {
         assertThat(postResponseDto.getTitle()).isEqualTo(postEntity.getTitle());
         assertThat(postResponseDto.getContent()).isEqualTo(postEntity.getContent());
 
-        verify(postRepository, times(1)).findById(postId);
+        verify(postFinder, times(1)).findByIdOrThrow(postId);
     }
 
     @Test
